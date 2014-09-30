@@ -2710,7 +2710,9 @@ if (typeof Slick === "undefined") {
         column: columnDef,
         item: item || {},
         commitChanges: commitEditAndSetFocus,
-        cancelChanges: cancelEditAndSetFocus
+        cancelChanges: cancelEditAndSetFocus,
+        row: activeRow, // sometimes custom editor needs location context
+        cell: activeCell
       });
 
       if (item) {
