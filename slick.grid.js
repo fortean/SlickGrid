@@ -99,7 +99,8 @@ if (typeof Slick === "undefined") {
       defaultFormatter: defaultFormatter,
       columnHeaderRenderer: columnHeaderRenderer,
       forceSyncScrolling: false,
-      addNewRowCssClass: "new-row"
+      addNewRowCssClass: "new-row",
+      jQueryUiStyles: true
     };
 
     var columnDefaults = $.extend({}, Slick.Grid.columnDefaults);	// clone the global defaults object. a copy is needed as it may be modified
@@ -232,8 +233,11 @@ if (typeof Slick === "undefined") {
         .empty()
         .css("overflow", "hidden")
         .css("outline", 0)
-        .addClass(uid)
-        .addClass("ui-widget");
+        .addClass(uid);
+
+      if (options.jQueryUiStyles) {
+        $container.addClass("ui-widget");
+      }
 
       // set up a positioning container if needed
       if (!/relative|absolute|fixed/.test($container.css("position"))) {
@@ -1518,7 +1522,7 @@ if (typeof Slick === "undefined") {
         rowCss += " " + metadata.cssClasses;
       }
 
-      stringArray.push("<div class='ui-widget-content " + rowCss + "' style='top:" + getRowTop(row) + "px'>");
+      stringArray.push("<div class='" + (options.jQueryUiStyles ? "ui-widget-content " : "") + rowCss + "' style='top:" + getRowTop(row) + "px'>");
 
       var colspan, m;
       for (var i = 0, ii = columns.length; i < ii; i++) {
