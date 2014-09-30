@@ -736,7 +736,7 @@ if (typeof Slick === "undefined") {
         $("<div class='slick-resizable-handle' />")
           .appendTo(e)
           .bind("dragstart", function (e, dd) {
-            if (!getEditorLock().commitCurrentEdit()) {
+            if (!getEditorLock().commitCurrentEdit() || e.pageX === undefined) {
               return false;
             }
             pageX = e.pageX;
@@ -802,6 +802,7 @@ if (typeof Slick === "undefined") {
           })
           .bind("drag", function (e, dd) {
             var actualMinWidth, d = Math.min(maxPageX, Math.max(minPageX, e.pageX)) - pageX, x;
+            if(isNaN(d) == true) return;
             if (d < 0) { // shrink column
               x = d;
               for (j = i; j >= 0; j--) {
