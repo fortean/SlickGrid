@@ -893,6 +893,7 @@ if (typeof Slick === "undefined") {
             }
             updateCanvasWidth(true);
             render();
+            handleScroll();
             trigger(self.onColumnsResized, {});
           });
       });
