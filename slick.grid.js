@@ -1867,7 +1867,9 @@ if (typeof Slick === "undefined") {
           while (cacheEntry.cellRenderQueue.length) {
             var columnIdx = cacheEntry.cellRenderQueue.pop();
             cacheEntry.cellNodesByColumnIdx[columnIdx] = lastChild;
-            lastChild = lastChild.previousSibling;
+            if(lastChild != null) {
+                lastChild = lastChild.previousSibling;
+            }
           }
         }
       }
