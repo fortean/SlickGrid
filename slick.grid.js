@@ -1619,6 +1619,7 @@ if (typeof Slick === "undefined") {
         zombieRowNodeFromLastMouseWheelEvent = rowNodeFromLastMouseWheelEvent;
       } else {
         $canvas[0].removeChild(cacheEntry.rowNode);
+        $(cacheEntry.rowNode).empty(); // remove children from jQuery cache
       }
 
       delete rowsCache[row];
@@ -2278,6 +2279,7 @@ if (typeof Slick === "undefined") {
       if (rowNode != rowNodeFromLastMouseWheelEvent) {
         if (zombieRowNodeFromLastMouseWheelEvent && zombieRowNodeFromLastMouseWheelEvent != rowNode) {
           $canvas[0].removeChild(zombieRowNodeFromLastMouseWheelEvent);
+          $(zombieRowNodeFromLastMouseWheelEvent).empty(); // remove children from jQuery cache
           zombieRowNodeFromLastMouseWheelEvent = null;
         }
         rowNodeFromLastMouseWheelEvent = rowNode;
